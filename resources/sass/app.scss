@@ -1,0 +1,24 @@
+// Fonts
+@import url("https://fonts.googleapis.com/css?family=Nunito");
+
+// Variables
+@import "variables";
+
+// Bootstrap
+@import "~bootstrap/scss/bootstrap";
+
+.hero-text {
+    background-color: #0145b9;
+}
+
+.status-0 {
+    color: $blue;
+}
+
+.status-1 {
+    color: $green;
+}
+
+.status-2 {
+    color: $red;
+}
