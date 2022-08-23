@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Room;
+use App\Book;
 use Illuminate\Http\Request;
 
-class RoomsController extends Controller
+class BookController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +14,8 @@ class RoomsController extends Controller
      */
     public function index()
     {
-        $rooms = Room::paginate(10);
-        return view('admin/rooms/index')->with('rooms', $rooms);
+        $books = Book::paginate(10);
+        return view('admin/books/index')->with('books', $books);
     }
 
     /**
@@ -25,7 +25,7 @@ class RoomsController extends Controller
      */
     public function create()
     {
-        return view('admin/rooms/create');
+        return view('admin/books/create');
     }
 
     /**
@@ -36,14 +36,14 @@ class RoomsController extends Controller
      */
     public function store(Request $request)
     {
-        //validate new data
-
+        //
         $this->validate($request, [
             'name' => 'required',
             'author' => 'required',
             'genre' => 'required',
             'price' => 'required|numeric',
             'description' => ['required'],
+            'image' => 'required|image',
         ]);
 
         if ($request->hasFile('image')) {
@@ -55,19 +55,24 @@ class RoomsController extends Controller
         }
 
         Book::Create([
+            'name' => $request->name,
+            'author' => $request->author,
+            'genre' => $request->genre,
+            'price' => $request->price,
             'description' => $request->description,
+            'image' => $fileNameToStore,
         ]);
 
-        return redirect('admin/rooms')->with('success', 'New Room has been created');
+        return redirect('admin/books')->with('success', 'New Book has been created');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Book  $book
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Book $book)
     {
         //
     }
@@ -75,10 +80,10 @@ class RoomsController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Book  $book
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Book $book)
     {
         //
     }
@@ -87,10 +92,10 @@ class RoomsController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Book  $book
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Book $book)
     {
         //
     }
@@ -98,13 +103,12 @@ class RoomsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Book  $book
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Book $book)
     {
-        $room = Room::find($id);
-        $room->delete();
-        return redirect('/admin/rooms')->with('success', 'Room has been removed');
+        $book->delete();
+        return redirect('/admin/books')->with('success', 'Book has been removed');
     }
 }
