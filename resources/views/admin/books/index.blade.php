@@ -34,7 +34,7 @@
                                 <table class="table table-centered table-nowrap mb-0 rounded">
                                     <thead class="thead-light">
                                         <tr>
-                                            <th class="border-0 rounded-start">Room ID</th>
+                                            <th class="border-0 rounded-start">Book ID</th>
                                             <th class="border-0">Name</th>
                                             <th class="border-0">Description</th>
                                             {{-- <th class="border-0">Status</th> --}}
