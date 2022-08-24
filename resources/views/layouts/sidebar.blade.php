@@ -27,8 +27,8 @@
                 <p>Guests</p>
             </a>
             </li> --}}
-            <li class="nav-item {{ request()->is('admin/rooms') || request()->is('admin/rooms/*') ? 'active' : '' }}">
-                <a class="nav-link" href="/admin/rooms">
+            <li class="nav-item {{ request()->is('admin/books') || request()->is('admin/rooms/*') ? 'active' : '' }}">
+                <a class="nav-link" href="/admin/books">
                     <i class="fa fa-book"></i>
                     <p>Books</p>
                 </a>
