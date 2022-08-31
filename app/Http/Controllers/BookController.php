@@ -51,7 +51,7 @@ class BookController extends Controller
             $fileName = pathinfo($fileNameWithExt, PATHINFO_FILENAME);
             $extension = $request->file('image')->getClientOriginalExtension();
             $fileNameToStore = $fileName . '_' . time() . '.' . $extension;
-            $path = $request->file('image')->storeAs('public/rooms', $fileNameToStore);
+            $path = $request->file('image')->storeAs('public/books', $fileNameToStore);
         }
 
         Book::Create([

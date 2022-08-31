@@ -24,6 +24,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::prefix('admin')->group(function () {
     Route::get('/', 'AdminController@index');
     Route::resource('books', 'BookController');
+    Route::resource('students', 'StudentController');
+    Route::resource('librarians', 'LibrarianController');
 
 
     // Route::resource('doctors', 'DoctorsController');
@@ -34,7 +36,7 @@ Route::prefix('admin')->group(function () {
     // Route::post('patients/search', 'SearchController@patients');
     // Route::post('appointments/search', 'SearchController@appointments');
     // Route::post('pharmacy/search', 'SearchController@pharmacy');
-    // Route::post('doctors/search', 'SearchController@doctors');
+    Route::post('students/search', 'SearchController@students');
 });
 
 Route::get('{id}/pay', 'HomeController@pay');

@@ -35,6 +35,7 @@
                                     <thead class="thead-light">
                                         <tr>
                                             <th class="border-0 rounded-start">Book ID</th>
+                                            <th class="border-0"></th>
                                             <th class="border-0">Name</th>
                                             <th class="border-0">Description</th>
                                             {{-- <th class="border-0">Status</th> --}}
@@ -48,6 +49,10 @@
                                         @foreach ($books as $book)
                                             <tr>
                                                 <td class="border-0 fw-bold">Book #{{ $book->id }}</td>
+
+                                                <td class="border-0 fw-bold "><img width="60px"
+                                                        src="/storage/books/{{ $book->image }}"
+                                                        alt="{{ $book->name }} image"></td>
                                                 <td class="border-0 fw-bold">{{ $book->name }}</td>
                                                 <td class="border-0 fw-bold">{{ $book->description }}</td>
                                                 {{-- <td
@@ -66,7 +71,7 @@
                                                     <form method="POST" action="{{ route('books.destroy', $book->id) }}">
                                                         {{ csrf_field() }}
                                                         {{ method_field('delete') }}
-                                                        <button class="btn btn-danger" type="submit">Delete</button>
+                                                        <button class="btn btn-danger mt-4" type="submit">Delete</button>
                                                     </form>
                                                 </td>
                                             </tr>

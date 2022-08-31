@@ -12,15 +12,24 @@
                     <p>Dashboard</p>
                 </a>
             </li>
-            {{-- @if (Auth::user()->role == 0)
+            @if (Auth::user()->role == 0)
                 <li
-                    class="nav-item {{ request()->is('admin/users') || request()->is('admin/users/*') ? 'active' : '' }}">
-                    <a class="nav-link" href="/admin/users">
+                    class="nav-item {{ request()->is('admin/librarians') || request()->is('admin/librarians/*') ? 'active' : '' }}">
+                    <a class="nav-link" href="/admin/librarians">
                         <i class="fas fa-users"></i>
-                        <p>Staff</p>
+                        <p>Librarians</p>
                     </a>
                 </li>
-            @endif --}}
+            @endif
+            @if (Auth::user()->role == 0 || Auth::user()->role == 1)
+                <li
+                    class="nav-item {{ request()->is('admin/students') || request()->is('admin/students/*') ? 'active' : '' }}">
+                    <a class="nav-link" href="/admin/students">
+                        <i class="fas fa-users"></i>
+                        <p>Students</p>
+                    </a>
+                </li>
+            @endif
             {{-- <li class="nav-item {{ request()->is('admin/guests') || request()->is('admin/guests/*') ? 'active' : '' }}">
             <a class="nav-link" href="/admin/guests">
                 <i class="fas fa-users"></i>

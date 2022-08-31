@@ -14,32 +14,10 @@
                         <div class="row align-items-center">
                             <div class="col">
                                 <h6 class="text-uppercase text-muted mb-2 h6">
-                                    New Orders
+                                    Burrowed books
                                 </h6>
                                 <span class="h2 mb-0">
                                     15
-                                </span>
-                            </div>
-                            <div class="col-auto">
-                                <span class="h2 text-muted mb-0">
-                                    <i class="fas fa-shopping-cart"></i>
-                                </span>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-12 col-lg-6 col-xl mb-3">
-                <div class="card rounded-lg">
-                    <div class="card-body">
-                        <div class="row align-items-center">
-                            <div class="col">
-                                <h6 class="text-uppercase text-muted mb-2 h6">
-                                    Products
-                                </h6>
-                                <span class="h2 mb-0">
-                                    9
                                 </span>
                             </div>
                             <div class="col-auto">
@@ -58,15 +36,15 @@
                         <div class="row align-items-center">
                             <div class="col">
                                 <h6 class="text-uppercase text-muted mb-2 h6">
-                                    Customers
+                                    Overdue books
                                 </h6>
                                 <span class="h2 mb-0">
-                                    6
+                                    9
                                 </span>
                             </div>
                             <div class="col-auto">
                                 <span class="h2 text-muted mb-0">
-                                    <i class="fas fa-users"></i>
+                                    <i class="fa fa-exclamation"></i>
                                 </span>
 
                             </div>

@@ -6,7 +6,7 @@ use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
-class DoctorsController extends Controller
+class StudentController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,10 +15,10 @@ class DoctorsController extends Controller
      */
     public function index()
     {
-        $doctors = User::where('role', 1)->paginate(10);
-        $totalCount = User::where('role', 1)->count();
+        $students = User::where('role', 2)->paginate(10);
+        $totalCount = User::where('role', 2)->count();
         $searchKey = '';
-        return view('admin/doctors/index')->with('doctors', $doctors)->with('totalCount', $totalCount)->with('searchKey', $searchKey);
+        return view('admin/students/index')->with('students', $students)->with('totalCount', $totalCount)->with('searchKey', $searchKey);
     }
 
     /**
@@ -28,7 +28,7 @@ class DoctorsController extends Controller
      */
     public function create()
     {
-        return view('admin/doctors/create');
+        return view('admin/students/create');
     }
 
     /**
@@ -54,10 +54,10 @@ class DoctorsController extends Controller
             'email' => $request->email,
             'phone' => $request->phone,
             'password' => Hash::make($request->password),
-            'role' => 1,
+            'role' => 2,
         ]);
 
-        return redirect('admin/doctors')->with('success', 'New doctor has been created');
+        return redirect('admin/students')->with('success', 'New student has been created');
     }
 
     /**
@@ -68,8 +68,7 @@ class DoctorsController extends Controller
      */
     public function show($id)
     {
-        $doctor = User::find($id);
-        return view('admin/doctors/view')->with('doctor', $doctor);
+        //
     }
 
     /**
@@ -80,9 +79,9 @@ class DoctorsController extends Controller
      */
     public function edit($id)
     {
-        //show edit page 
-        $doctor = User::find($id);
-        return view('admin/doctors/edit')->with('doctor', $doctor);
+        //
+        $student = User::find($id);
+        return view('admin/students/edit')->with('student', $student);
     }
 
     /**
@@ -94,20 +93,19 @@ class DoctorsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // validate doctor data
         $this->validate($request, [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255'],
             'phone' => ['nullable', 'numeric'],
         ]);
 
-        $doctor = User::find($id);
-        $doctor->name = $request->name;
-        $doctor->email = $request->email;
-        $doctor->phone = $request->phone;
-        $doctor->save();
+        $student = User::find($id);
+        $student->name = $request->name;
+        $student->email = $request->email;
+        $student->phone = $request->phone;
+        $student->save();
 
-        return redirect('/admin/doctors')->with('success', 'Account details have been updated');
+        return redirect('/admin/students')->with('success', 'Account details have been updated');
     }
 
     /**
@@ -119,8 +117,8 @@ class DoctorsController extends Controller
     public function destroy($id)
     {
         // Delete user
-        $doctor = User::find($id);
-        $doctor->delete();
-        return redirect('/admin/doctors')->with('success', 'Doctor has been removed');
+        $student = User::find($id);
+        $student->delete();
+        return redirect('/admin/students')->with('success', 'Student has been removed');
     }
 }

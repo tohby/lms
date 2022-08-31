@@ -13,7 +13,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-link text-gray-600 me-auto" data-bs-dismiss="modal">Close</button>
-                <form method="POST" action="{{ route('doctors.destroy',$doctor->id) }}">
+                <form method="POST" action="{{ route('students.destroy', $student->id) }}">
                     {{ csrf_field() }}
                     {{ method_field('delete') }}
                     <button type="submit" class="btn btn-danger">Delete</button>

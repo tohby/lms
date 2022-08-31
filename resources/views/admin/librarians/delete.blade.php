@@ -1,6 +1,5 @@
 <!-- Modal Content -->
-<div class="modal fade" id="deletePatient" tabindex="-1" role="dialog" aria-labelledby="deleteDoctor"
-    aria-hidden="true">
+<div class="modal fade" id="deleteDoctor" tabindex="-1" role="dialog" aria-labelledby="deleteDoctor" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header border-0">
@@ -14,7 +13,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-link text-gray-600 me-auto" data-bs-dismiss="modal">Close</button>
-                <form method="POST" action="{{ route('patients.destroy',$patient->id) }}">
+                <form method="POST" action="{{ route('librarians.destroy', $librarian->id) }}">
                     {{ csrf_field() }}
                     {{ method_field('delete') }}
                     <button type="submit" class="btn btn-danger">Delete</button>
