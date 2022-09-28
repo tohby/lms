@@ -35,7 +35,7 @@
                         <div class="col-lg-8 col-sm-12">
                             <div class="mb-4">
                                 <label for="email">Email</label>
-                                <input type="text" class="form-control @error('email') is-invalid @enderror"
+                                <input type="email" class="form-control @error('email') is-invalid @enderror"
                                     name="email" aria-describedby="email" required>
                                 @error('email')
                                     <span class="invalid-feedback" role="alert">
@@ -69,7 +69,7 @@
                         <div class="col-lg-8 col-sm-12">
                             <div class="mb-4">
                                 <label for="phone">Phone</label>
-                                <input type="text" class="form-control @error('phone') is-invalid @enderror"
+                                <input type="phone" class="form-control @error('phone') is-invalid @enderror"
                                     name="phone" aria-describedby="phone">
                             </div>
                             @error('phone')
