@@ -1,5 +1,5 @@
 <!-- Modal Content -->
-<div class="modal fade" id="deleteDoctor" tabindex="-1" role="dialog" aria-labelledby="deleteDoctor" aria-hidden="true">
+<div class="modal fade" id="deleteStudent" tabindex="-1" role="dialog" aria-labelledby="deleteStudent" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header border-0">

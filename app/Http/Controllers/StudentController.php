@@ -39,15 +39,12 @@ class StudentController extends Controller
      */
     public function store(Request $request)
     {
-        // validate new doctor data
         $this->validate($request, [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             'phone' => ['nullable', 'numeric'],
         ]);
-
-        // store new doctor data
 
         User::Create([
             'name' => $request->name,

@@ -12,7 +12,7 @@
                             <li class="breadcrumb-item active" aria-current="page">Create</li>
                         </ol>
                     </nav>
-                    <h2 class="h4">Add new Doctor</h2>
+                    <h2 class="h4">Add new Student</h2>
                 </div>
             </div>
 
