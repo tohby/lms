@@ -8,21 +8,23 @@
                     <nav aria-label="breadcrumb" class="d-none d-md-inline-block">
                         <ol class="breadcrumb breadcrumb-dark breadcrumb-transparent">
                             <li class="breadcrumb-item"><a href="/admin">Dashboard</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Rooms</li>
+                            <li class="breadcrumb-item active" aria-current="page">Books</li>
                         </ol>
                     </nav>
                     <h2 class="h4">All Books</h2>
                 </div>
-                <div class="btn-toolbar mb-2 mb-md-0">
-                    <a href="/admin/books/create" class="btn btn-sm btn-gray-800 d-inline-flex align-items-center">
-                        <svg class="icon icon-xs me-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
-                        </svg>
-                        Add Book
-                    </a>
-                </div>
+                @unless(Auth::user()->role == 2)
+                    <div class="btn-toolbar mb-2 mb-md-0">
+                        <a href="/admin/books/create" class="btn btn-sm btn-gray-800 d-inline-flex align-items-center">
+                            <svg class="icon icon-xs me-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                            </svg>
+                            Add Book
+                        </a>
+                    </div>
+                @endunless
             </div>
             <div class="col-12 px-0 mb-4">
                 @if ($books->count() < 1)
@@ -55,24 +57,20 @@
                                                         alt="{{ $book->name }} image"></td>
                                                 <td class="border-0 fw-bold">{{ $book->name }}</td>
                                                 <td class="border-0 fw-bold">{{ $book->description }}</td>
-                                                {{-- <td
-                                                    class="border-0 {{ $book->status === 1 ? 'text-danger' : 'text-primary' }}">
-                                                    <div class="d-flex align-items-center"><svg class="icon icon-xs me-1"
-                                                            fill="currentColor" viewBox="0 0 20 20"
-                                                            xmlns="http://www.w3.org/2000/svg">
-                                                            <path fill-rule="evenodd"
-                                                                d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                                                                clip-rule="evenodd"></path>
-                                                        </svg> <span
-                                                            class="fw-bold">{{ $book->status === 1 ? 'tOccupied' : 'Available' }}</span>
-                                                    </div>
-                                                </td> --}}
-                                                <td class="border-0 fw-bold text-danger">
-                                                    <form method="POST" action="{{ route('books.destroy', $book->id) }}">
-                                                        {{ csrf_field() }}
-                                                        {{ method_field('delete') }}
-                                                        <button class="btn btn-danger mt-4" type="submit">Delete</button>
-                                                    </form>
+
+                                                <td class="border-0 fw-bold">
+                                                    <a class="btn btn-default mt-4 mr-2"
+                                                        href="/admin/books/{{ $book->id }}">View</a>
+                                                    @unless(Auth::user()->role == 2)
+                                                        <a class="btn btn-primary mt-4 mr-2"
+                                                            href="/admin/books/{{ $book->id }}/edit">Edit</a>
+                                                        <form method="POST" action="{{ route('books.destroy', $book->id) }}">
+                                                            {{ csrf_field() }}
+                                                            {{ method_field('delete') }}
+                                                            <button class="btn btn-danger mt-4" type="submit">Delete</button>
+                                                        </form>
+                                                    @endunless
+
                                                 </td>
                                             </tr>
                                         @endforeach

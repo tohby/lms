@@ -74,7 +74,7 @@ class BookController extends Controller
      */
     public function show(Book $book)
     {
-        //
+        return view('admin/books/show')->with('book', $book);
     }
 
     /**
@@ -85,7 +85,7 @@ class BookController extends Controller
      */
     public function edit(Book $book)
     {
-        //
+        return view('admin/books/edit')->with('book', $book);
     }
 
     /**
@@ -97,7 +97,32 @@ class BookController extends Controller
      */
     public function update(Request $request, Book $book)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required',
+            'author' => 'required',
+            'genre' => 'required',
+            'price' => 'required|numeric',
+            'description' => ['required'],
+            // 'image' => 'required|image',
+        ]);
+
+        if ($request->hasFile('image')) {
+            $fileNameWithExt = $request->file('image')->getClientOriginalName();
+            $fileName = pathinfo($fileNameWithExt, PATHINFO_FILENAME);
+            $extension = $request->file('image')->getClientOriginalExtension();
+            $fileNameToStore = $fileName . '_' . time() . '.' . $extension;
+            $path = $request->file('image')->storeAs('public/books', $fileNameToStore);
+            $book->image = $fileNameToStore;
+        }
+
+        $book->name = $request->name;
+        $book->author = $request->author;
+        $book->genre = $request->genre;
+        $book->price = $request->price;
+        $book->description = $request->description;
+        $book->save();
+
+        return redirect('admin/books')->with('success', 'Book has been updated');
     }
 
     /**

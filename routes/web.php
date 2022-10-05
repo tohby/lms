@@ -32,3 +32,4 @@ Route::prefix('admin')->group(function () {
 
 Route::get('{id}/pay', 'HomeController@pay');
 Route::post('/checkout', 'HomeController@checkout');
+Route::post('/comment', 'CommentController@store');

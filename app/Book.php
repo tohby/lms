@@ -12,4 +12,9 @@ class Book extends Model
     protected $fillable = [
         'name', 'author', 'genre', 'price', 'image', 'description'
     ];
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class, 'bookId');
+    }
 }
