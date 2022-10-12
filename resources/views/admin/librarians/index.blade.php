@@ -27,7 +27,8 @@
             <div class="table-settings mb-4">
                 <div class="row align-items-center justify-content-between">
                     <div class="col col-md-6 col-lg-3 col-xl-4">
-                        <form id="librarians-search-form" action="{{ action('SearchController@students') }}" method="POST">
+                        <form id="librarians-search-form" action="{{ action('SearchController@librarians') }}"
+                            method="POST">
                             @csrf
                             <div class="input-group me-2 me-lg-3 fmxw-400">
                                 <span class="input-group-text">

@@ -26,8 +26,10 @@ Route::prefix('admin')->group(function () {
     Route::resource('books', 'BookController');
     Route::resource('students', 'StudentController');
     Route::resource('librarians', 'LibrarianController');
+    Route::resource('burrows', 'BurrowController');
 
     Route::post('students/search', 'SearchController@students');
+    Route::post('librarians/search', 'SearchController@librarians');
 });
 
 Route::get('{id}/pay', 'HomeController@pay');

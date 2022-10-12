@@ -42,13 +42,14 @@
                     <p>Books</p>
                 </a>
             </li>
-            {{-- <li
-                class="nav-item {{ request()->is('admin/bookings') || request()->is('admin/bookings/*') ? 'active' : '' }}">
-                <a class="nav-link" href="/admin/bookings">
+
+            <li
+                class="nav-item {{ request()->is('admin/burrows') || request()->is('admin/burrows/*') ? 'active' : '' }}">
+                <a class="nav-link" href="/admin/burrows">
                     <i class="fas fa-file-signature"></i>
-                    <p>Bookings</p>
+                    <p>Book burrows</p>
                 </a>
-            </li> --}}
+            </li>
             {{-- <li class="nav-item {{ request()->is('admin/food') || request()->is('admin/food/*') ? 'active' : '' }}">
                 <a class="nav-link" href="/admin/food">
                     <i class="fas fa-utensils"></i>

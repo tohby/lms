@@ -40,14 +40,6 @@ class User extends Authenticatable
     ];
 
     /**
-     * Get the record associated with the user.
-     */
-    public function info()
-    {
-        return $this->hasOne(PatientInfo::class, 'patientId');
-    }
-
-    /**
      * Get the indexable data array for the model.
      *
      * @return array
