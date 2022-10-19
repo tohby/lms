@@ -17,7 +17,7 @@
                                     Burrowed books
                                 </h6>
                                 <span class="h2 mb-0">
-                                    15
+                                    {{ $upcomingBooksCount }}
                                 </span>
                             </div>
                             <div class="col-auto">
@@ -39,7 +39,7 @@
                                     Overdue books
                                 </h6>
                                 <span class="h2 mb-0">
-                                    9
+                                    {{ $overdueBooksCount }}
                                 </span>
                             </div>
                             <div class="col-auto">

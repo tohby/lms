@@ -24,10 +24,14 @@ class AdminController extends Controller
         if (Auth::user()->role === 2) {
             $overdueBooks = Burrow::where('studentId', Auth::id())->whereDate('return_date', '<=', date('Y-m-d'))->get();
             $upcomingBooks = Burrow::where('studentId', Auth::id())->whereDate('return_date', '>=', date('Y-m-d'))->get();
+            $overdueBooksCount = Burrow::where('studentId', Auth::id())->whereDate('return_date', '<=', date('Y-m-d'))->count();
+            $upcomingBooksCount = Burrow::where('studentId', Auth::id())->whereDate('return_date', '>=', date('Y-m-d'))->count();
         } else {
             $overdueBooks = Burrow::whereDate('return_date', '>=', date('Y-m-d'))->get();
             $upcomingBooks = Burrow::whereDate('return_date', '<=', date('Y-m-d'))->get();
+            $overdueBooksCount = Burrow::whereDate('return_date', '>=', date('Y-m-d'))->count();
+            $upcomingBooksCount = Burrow::whereDate('return_date', '<=', date('Y-m-d'))->count();
         }
-        return view('admin/index')->with('overdueBooks', $overdueBooks)->with('upcomingBooks', $upcomingBooks);
+        return view('admin/index')->with('overdueBooks', $overdueBooks)->with('upcomingBooks', $upcomingBooks)->with('upcomingBooksCount', $upcomingBooksCount)->with('overdueBooksCount', $overdueBooksCount);
     }
 }
