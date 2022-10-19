@@ -53,5 +53,58 @@
                 </div>
             </div>
         </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card strpied-tabled-with-hover">
+                    <div class="card-header ">
+                        <h4 class="card-title">Overdue books</h4>
+                        <p class="card-category">Here is a list of books that are ovre due for return</p>
+                    </div>
+                    <div class="card-body table-full-width table-responsive">
+                        <table class="table table-hover table-striped">
+                            <tbody>
+                                @foreach ($overdueBooks as $book)
+                                    <tr>
+                                        <td>{{ $book->book->id }}</td>
+                                        <td>{{ $book->book->name }}</td>
+                                        <td>{{ $book->burrow_date }}</td>
+                                        <td>Due on {{ $book->return_date }}</td>
+                                        <td>{{ $book->status === 0 ? 'Not returned' : 'Returned' }}</td>
+                                        <td>{{ $book->student->name }}</td>
+                                        <td>{{ $book->student->id }}</td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="card strpied-tabled-with-hover">
+                    <div class="card-header ">
+                        <h4 class="card-title">Upcoming books</h4>
+                        <p class="card-category">Here is a list of books you have burrowed and have not yet returned</p>
+                    </div>
+                    <div class="card-body table-full-width table-responsive">
+                        <table class="table table-hover table-striped">
+                            <tbody>
+                                @foreach ($upcomingBooks as $book)
+                                    <tr>
+                                        <td>{{ $book->book->id }}</td>
+                                        <td>{{ $book->book->name }}</td>
+                                        <td>{{ $book->burrow_date }}</td>
+                                        <td>Due on {{ $book->return_date }}</td>
+                                        <td>{{ $book->status === 0 ? 'Not returned' : 'Returned' }}</td>
+                                        <td>{{ $book->student->name }}</td>
+                                        <td>{{ $book->student->id }}</td>
+
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 @endsection
