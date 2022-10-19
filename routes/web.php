@@ -29,6 +29,7 @@ Route::prefix('admin')->group(function () {
     Route::resource('burrows', 'BurrowController');
 
     Route::post('students/search', 'SearchController@students');
+    Route::post('books/search', 'SearchController@books');
     Route::post('librarians/search', 'SearchController@librarians');
 });
 

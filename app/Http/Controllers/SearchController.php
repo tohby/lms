@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\User;
-use App\Room;
-use App\Pharmacy;
-use App\Appointment;
+
+use App\Book;
 use Illuminate\Http\Request;
+use Laravel\Ui\Presets\React;
 
 class SearchController extends Controller
 {
@@ -34,5 +34,15 @@ class SearchController extends Controller
             ->with('librarians', $librarians)
             ->with('totalCount', $totalCount)
             ->with('searchKey', $request->searchKey);
+    }
+
+    public function books(Request $request)
+    {
+        $this->validate($request, [
+            'searchKey' => 'required',
+        ]);
+
+        $books = Book::search($request->searchKey)->paginate(10);
+        return view('admin/books/index')->with('books', $books)->with('searchKey', $request->searchKey);
     }
 }
