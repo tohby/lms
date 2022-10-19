@@ -31,6 +31,11 @@ class Burrow extends Model
         return $this->belongsTo(Book::class, 'bookId');
     }
 
+    public function student()
+    {
+        return $this->belongsTo(User::class, 'studentId');
+    }
+
     public function toSearchableArray()
     {
         $array = $this->toArray();
