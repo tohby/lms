@@ -37,10 +37,13 @@
                                 <tbody>
                                     @foreach ($overdueBooks as $book)
                                         <tr>
+                                            <td>{{ $book->book->id }}</td>
                                             <td>{{ $book->book->name }}</td>
                                             <td>{{ $book->burrow_date }}</td>
                                             <td>Due on {{ $book->return_date }}</td>
                                             <td>{{ $book->status === 0 ? 'Not returned' : 'Returned' }}</td>
+                                            <td>{{ $book->student->name }}</td>
+                                            <td>{{ $book->student->id }}</td>
                                         </tr>
                                     @endforeach
                                 </tbody>
@@ -59,10 +62,14 @@
                                 <tbody>
                                     @foreach ($upcomingBooks as $book)
                                         <tr>
+                                            <td>{{ $book->book->id }}</td>
                                             <td>{{ $book->book->name }}</td>
                                             <td>{{ $book->burrow_date }}</td>
                                             <td>Due on {{ $book->return_date }}</td>
                                             <td>{{ $book->status === 0 ? 'Not returned' : 'Returned' }}</td>
+                                            <td>{{ $book->student->name }}</td>
+                                            <td>{{ $book->student->id }}</td>
+
                                         </tr>
                                     @endforeach
                                 </tbody>
