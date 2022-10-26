@@ -12,7 +12,7 @@ class Book extends Model
     use Searchable;
 
     protected $fillable = [
-        'name', 'author', 'genre', 'price', 'image', 'description'
+        'name', 'author', 'genre', 'price', 'image', 'description', 'number_of_books'
     ];
 
     public function comments()

@@ -63,8 +63,11 @@
                                             <th class="border-0"></th>
                                             <th class="border-0">Name</th>
                                             <th class="border-0">Description</th>
-                                            {{-- <th class="border-0">Status</th> --}}
+                                            @unless(Auth::user()->role == 2)
+                                                <th class="border-0">Number of copies</th>
+                                            @endunless
                                             <th class="border-0">#</th>
+
                                             {{-- <th class="border-0">Travel &amp; Local Change</th>
                                     <th class="border-0">Widgets</th>
                                     <th class="border-0 rounded-end">Widgets Change</th> --}}
@@ -80,6 +83,9 @@
                                                         alt="{{ $book->name }} image"></td>
                                                 <td class="border-0 fw-bold">{{ $book->name }}</td>
                                                 <td class="border-0 fw-bold">{{ $book->description }}</td>
+                                                @unless(Auth::user()->role == 2)
+                                                    <td class="border-0">{{ $book->number_of_books }}</td>
+                                                @endunless
 
                                                 <td class="border-0 fw-bold">
                                                     <a class="btn btn-default mt-4 mr-2"

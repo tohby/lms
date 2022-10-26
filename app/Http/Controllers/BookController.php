@@ -45,6 +45,7 @@ class BookController extends Controller
             'price' => 'required|numeric',
             'description' => ['required'],
             'image' => 'required|image',
+            'number_of_books' => 'required|numeric',
         ]);
 
         if ($request->hasFile('image')) {
@@ -62,6 +63,7 @@ class BookController extends Controller
             'price' => $request->price,
             'description' => $request->description,
             'image' => $fileNameToStore,
+            'number_of_books' => $request->number_of_books
         ]);
 
         return redirect('admin/books')->with('success', 'New Book has been created');
@@ -104,6 +106,7 @@ class BookController extends Controller
             'genre' => 'required',
             'price' => 'required|numeric',
             'description' => ['required'],
+            'number_of_books' => 'required|numeric',
             // 'image' => 'required|image',
         ]);
 
@@ -121,6 +124,7 @@ class BookController extends Controller
         $book->genre = $request->genre;
         $book->price = $request->price;
         $book->description = $request->description;
+        $book->number_of_books = $request->number_of_books;
         $book->save();
 
         return redirect('admin/books')->with('success', 'Book has been updated');

@@ -36,6 +36,11 @@
                         <input type="number" class="form-control" name="price" placeholder="Enter book price">
                     </div>
                     <div class="form-group">
+                        <label for="name">No. of books:</label>
+                        <input type="number" class="form-control" name="number_of_books"
+                            placeholder="Enter number of book">
+                    </div>
+                    <div class="form-group">
                         <label for="name">Description:</label>
                         <textarea rows="3" class="form-control" name="description" placeholder="Enter product description"></textarea>
                     </div>
