@@ -1,81 +1,128 @@
+<!-- /*
+* Template Name: Passion
+* Template Author: Untree.co
+* Tempalte URI: https://untree.co/
+* License: https://creativecommons.org/licenses/by/3.0/
+*/ -->
 <!doctype html>
-<html class="no-js" lang="zxx">
+<html lang="en">
 
 <head>
     <meta charset="utf-8">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Library Management System</title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="author" content="Untree.co">
+    <link rel="shortcut icon" href="favicon.png">
 
-    <!-- <link rel="manifest" href="site.webmanifest"> -->
-    <link rel="shortcut icon" type="image/x-icon" href="img/favicon.png">
-    <!-- Place favicon.ico in the root directory -->
+    <meta name="description" content="" />
+    <meta name="keywords" content="bootstrap, bootstrap4" />
 
-    <!-- CSS here -->
+
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/owl.carousel.min.css">
-    <link rel="stylesheet" href="css/magnific-popup.css">
-    <link rel="stylesheet" href="css/font-awesome.min.css">
-    <link rel="stylesheet" href="css/themify-icons.css">
-    <link rel="stylesheet" href="css/nice-select.css">
-    <link rel="stylesheet" href="css/flaticon.css">
-    <link rel="stylesheet" href="css/gijgo.css">
-    <link rel="stylesheet" href="css/animate.css">
-    <link rel="stylesheet" href="css/slicknav.css">
+    <link rel="stylesheet" href="fonts/icomoon/style.css">
+    <link rel="stylesheet" href="fonts/feather/style.css">
+    <link rel="stylesheet" href="fonts/flaticon/font/flaticon.css">
     <link rel="stylesheet" href="css/style.css">
-    <!-- <link rel="stylesheet" href="css/responsive.css"> -->
+
+    <title>LMS</title>
 </head>
 
 <body>
 
 
-    <!-- JS here -->
-    <script src="js/vendor/modernizr-3.5.0.min.js"></script>
-    <script src="js/vendor/jquery-1.12.4.min.js"></script>
+    <div class="site-mobile-menu site-navbar-target">
+        <div class="site-mobile-menu-header">
+            <div class="site-mobile-menu-close">
+                <span class="icofont-close js-menu-toggle"></span>
+            </div>
+        </div>
+        <div class="site-mobile-menu-body"></div>
+    </div>
+
+    <div class="container">
+
+
+        <nav class="site-nav">
+            <div class="logo">
+                <a href="index.html" class="text-white">LMS<span class="text-black">.</span></a>
+            </div>
+            <div class="row align-items-center">
+                <div class="col-12 col-sm-12 col-lg-12 site-navigation text-center">
+                    <ul class="js-clone-nav d-none d-lg-inline-block text-left site-menu float-right menu-absolute">
+                        <li class="cta-button"><a href="{{ route('register') }}">Sign up</a></li>
+                    </ul>
+
+                    <a href="#" class="burger light ml-auto site-menu-toggle js-menu-toggle d-block d-lg-none"
+                        data-toggle="collapse" data-target="#main-navbar">
+                        <span></span>
+                    </a>
+                </div>
+            </div>
+        </nav> <!-- END nav -->
+    </div> <!-- END container -->
+
+
+    <div class="hero overlay h-100" data-stellar-background-ratio="0.5"
+        style="background-image: url('images/hero-min.jpg')">
+
+        <div class="container">
+            <div class="row align-items-center justify-content-between">
+                <div class="col-lg-12">
+                    <div class="row justify-content-around align-items-center">
+                        <div class="col-lg-7 intro">
+                            <h1 data-aos="fade-up" data-aos-delay="0">Get your new book with the best price</h1>
+                            <p class="text-white mb-4" data-aos="fade-up" data-aos-delay="100">Far far away, behind the
+                                word mountains, far from the countries Vokalia and Consonantia, there live the blind
+                                texts. Separated they live.</p>
+                            <p data-aos="fade-up" data-aos-delay="200"><a href="{{ route('register') }}"
+                                    class="btn btn-primary">Get
+                                    Started</a></p>
+                        </div>
+
+                        <div class="col-lg-4">
+                            <form method="POST" action="{{ route('login') }}" class="form-register">
+                                @csrf
+                                <h2 class="mb-2">Sign in</h2>
+                                <p>Don't have an account? <a href="{{ route('register') }}">sign up</a></p>
+                                <div class="form-group row px-2">
+                                    <input id="email" type="email"
+                                        class="form-control @error('email') is-invalid @enderror" name="email"
+                                        value="{{ old('email') }}" required autocomplete="email" placeholder="Email">
+                                    @error('email')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                                <div class="form-group row px-2">
+                                    <input id="password" type="password"
+                                        class="form-control @error('password') is-invalid @enderror" name="password"
+                                        required autocomplete="current-password" placeholder="Password">
+                                    @error('password')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                                <div class="form-group row px-2">
+                                    <button type="submit" class="btn btn-primary btn-block">
+                                        {{ __('Login') }}
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/jquery-3.5.1.min.js"></script>
+    <script src="js/jquery-migrate-3.0.0.min.js"></script>
     <script src="js/popper.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
-    <script src="js/owl.carousel.min.js"></script>
-    <script src="js/isotope.pkgd.min.js"></script>
-    <script src="js/ajax-form.js"></script>
-    <script src="js/waypoints.min.js"></script>
-    <script src="js/jquery.counterup.min.js"></script>
-    <script src="js/imagesloaded.pkgd.min.js"></script>
-    <script src="js/scrollIt.js"></script>
-    <script src="js/jquery.scrollUp.min.js"></script>
-    <script src="js/wow.min.js"></script>
-    <script src="js/nice-select.min.js"></script>
-    <script src="js/jquery.slicknav.min.js"></script>
-    <script src="js/jquery.magnific-popup.min.js"></script>
-    <script src="js/plugins.js"></script>
-    <script src="js/gijgo.min.js"></script>
-    <!--contact js-->
-    <script src="js/contact.js"></script>
-    <script src="js/jquery.ajaxchimp.min.js"></script>
-    <script src="js/jquery.form.js"></script>
-    <script src="js/jquery.validate.min.js"></script>
-    <script src="js/mail-script.js"></script>
+</body>
 
-    <script src="js/main.js"></script>
-    <script>
-        $('#datepicker').datepicker({
-            iconsLibrary: 'fontawesome',
-            icons: {
-                rightIcon: '<span class="fa fa-caret-down"></span>'
-            }
-        });
-        $('#datepicker2').datepicker({
-            iconsLibrary: 'fontawesome',
-            icons: {
-                rightIcon: '<span class="fa fa-caret-down"></span>'
-            }
-
-        });
-        $(document).ready(function() {
-                    $('.js-example-basic-multiple').select2();
-
-                    <
-                    /body>
-
-                    <
-                    /html>
+</html>
