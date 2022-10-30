@@ -43,7 +43,21 @@
                                             <td>Due on {{ $book->return_date }}</td>
                                             <td>{{ $book->status === 0 ? 'Not returned' : 'Returned' }}</td>
                                             <td>{{ $book->student->name }}</td>
-                                            <td>{{ $book->student->id }}</td>
+                                            <td>Student Id #{{ $book->student->id }}</td>
+                                            @unless(Auth::user()->role == 2)
+                                                <td>
+                                                    <form method="POST" action="{{ route('burrows.update', $book->id, 1) }}">
+                                                        {{ csrf_field() }}
+                                                        {{ method_field('delete') }}
+                                                        <button class="btn btn-success mr-2" type="submit">Delete</button>
+                                                    </form>
+                                                    <form method="POST" action="{{ route('burrows.update', $book->id, 2) }}">
+                                                        {{ csrf_field() }}
+                                                        {{ method_field('delete') }}
+                                                        <button class="btn btn-danger mr-2" type="submit">Delete</button>
+                                                    </form>
+                                                </td>
+                                            @endunless
                                         </tr>
                                     @endforeach
                                 </tbody>
@@ -68,8 +82,15 @@
                                             <td>Due on {{ $book->return_date }}</td>
                                             <td>{{ $book->status === 0 ? 'Not returned' : 'Returned' }}</td>
                                             <td>{{ $book->student->name }}</td>
-                                            <td>{{ $book->student->id }}</td>
-
+                                            <td>Student Id #{{ $book->student->id }}</td>
+                                            @unless(Auth::user()->role == 2)
+                                                <td>
+                                                    <a class="btn btn-success mr-2"
+                                                        href="/admin/books/{{ $book->id }}/edit">Accept</a>
+                                                    <a class="btn btn-danger"
+                                                        href="/admin/books/{{ $book->id }}/edit">Cancel</a>
+                                                </td>
+                                            @endunless
                                         </tr>
                                     @endforeach
                                 </tbody>
