@@ -19,7 +19,6 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
 
 Route::prefix('admin')->group(function () {
     Route::get('/', 'AdminController@index');
@@ -33,6 +32,4 @@ Route::prefix('admin')->group(function () {
     Route::post('librarians/search', 'SearchController@librarians');
 });
 
-Route::get('{id}/pay', 'HomeController@pay');
-Route::post('/checkout', 'HomeController@checkout');
 Route::post('/comment', 'CommentController@store');

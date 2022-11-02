@@ -18,24 +18,4 @@ class HomeController extends Controller
     {
         return view('home');
     }
-
-    public function pay($id)
-    {
-        $appointment = Appointment::find($id);
-        return view('admin/appointments/payment')->with('appointment', $appointment);
-    }
-
-    public function checkout(Request $request)
-    {
-        $appointment = Appointment::find($request->appointmentId);
-        $charge = Stripe::charges()->create([
-            'amount' => $appointment->price,
-            'currency' => 'usd',
-            'source' => $request->stripeToken,
-            'description' => 'Order',
-            'receipt_email' => $appointment->patient->email,
-        ]);
-
-        return redirect('admin/appointments')->with('success', 'Your invoice has been paid');
-    }
 }

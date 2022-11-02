@@ -30,12 +30,7 @@
                     </a>
                 </li>
             @endif
-            {{-- <li class="nav-item {{ request()->is('admin/guests') || request()->is('admin/guests/*') ? 'active' : '' }}">
-            <a class="nav-link" href="/admin/guests">
-                <i class="fas fa-users"></i>
-                <p>Guests</p>
-            </a>
-            </li> --}}
+
             <li class="nav-item {{ request()->is('admin/books') || request()->is('admin/rooms/*') ? 'active' : '' }}">
                 <a class="nav-link" href="/admin/books">
                     <i class="fa fa-book"></i>
@@ -50,26 +45,6 @@
                     <p>Book burrows</p>
                 </a>
             </li>
-            {{-- <li class="nav-item {{ request()->is('admin/food') || request()->is('admin/food/*') ? 'active' : '' }}">
-                <a class="nav-link" href="/admin/food">
-                    <i class="fas fa-utensils"></i>
-                    <p>Food menu</p>
-                </a>
-            </li> --}}
-            {{-- <li
-                class="nav-item {{ request()->is('admin/food-order') || request()->is('admin/food-order/*') ? 'active' : '' }}">
-                <a class="nav-link" href="/admin/food-order">
-                    <i class="fas fa-bread-slice"></i>
-                    <p>Food orders</p>
-                </a>
-            </li> --}}
-            {{-- <li
-                class="nav-item {{ request()->is('admin/feedbacks') || request()->is('admin/feedbacks/*') ? 'active' : '' }}">
-                <a class="nav-link" href="/admin/feedbacks">
-                    <i class="fas fa-comment-dots"></i>
-                    <p>Feedback</p>
-                </a>
-            </li> --}}
         </ul>
     </div>
 </div>
