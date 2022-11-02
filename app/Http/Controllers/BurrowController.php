@@ -17,11 +17,11 @@ class BurrowController extends Controller
     public function index()
     {
         if (Auth::user()->role === 2) {
-            $overdueBooks = Burrow::where('studentId', Auth::id())->whereDate('return_date', '<=', date('Y-m-d'))->get();
-            $upcomingBooks = Burrow::where('studentId', Auth::id())->whereDate('return_date', '>=', date('Y-m-d'))->get();
+            $overdueBooks = Burrow::where('studentId', Auth::id())->whereDate('return_date', '>=', date('Y-m-d'))->get();
+            $upcomingBooks = Burrow::where('studentId', Auth::id())->whereDate('return_date', '<=', date('Y-m-d'))->get();
         } else {
-            $overdueBooks = Burrow::whereDate('return_date', '>=', date('Y-m-d'))->get();
-            $upcomingBooks = Burrow::whereDate('return_date', '<=', date('Y-m-d'))->get();
+            $overdueBooks = Burrow::whereDate('return_date', '<=', date('Y-m-d'))->get();
+            $upcomingBooks = Burrow::whereDate('return_date', '>=', date('Y-m-d'))->get();
         }
         $books = Book::get();
         return view('admin/burrows/index')->with('books', $books)->with('overdueBooks', $overdueBooks)->with('upcomingBooks', $upcomingBooks);
@@ -93,6 +93,10 @@ class BurrowController extends Controller
     public function update(Request $request, Burrow $burrow)
     {
         //
+        $burrow->status = $request->status;
+        $burrow->save();
+
+        return redirect('admin/burrows')->with('success', 'Status has been updated');
     }
 
     /**

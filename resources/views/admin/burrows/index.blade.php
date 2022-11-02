@@ -46,18 +46,29 @@
                                             <td>Student Id #{{ $book->student->id }}</td>
                                             @unless(Auth::user()->role == 2)
                                                 <td>
-                                                    <form method="POST" action="{{ route('burrows.update', $book->id, 1) }}">
-                                                        {{ csrf_field() }}
-                                                        {{ method_field('delete') }}
-                                                        <button class="btn btn-success mr-2" type="submit">Delete</button>
-                                                    </form>
-                                                    <form method="POST" action="{{ route('burrows.update', $book->id, 2) }}">
-                                                        {{ csrf_field() }}
-                                                        {{ method_field('delete') }}
-                                                        <button class="btn btn-danger mr-2" type="submit">Delete</button>
-                                                    </form>
+                                                    @if ($book->status === 0)
+                                                        <form method="POST" action="{{ route('burrows.update', $book->id) }}">
+                                                            @csrf
+                                                            <input type="hidden" name="status" value="1">
+                                                            <button class="btn btn-success mr-2" type="submit">Accept</button>
+                                                            @method('PUT')
+                                                        </form>
+                                                        <form method="POST" action="{{ route('burrows.update', $book->id) }}">
+                                                            @csrf
+                                                            <input type="hidden" name="status" value="2">
+                                                            <button class="btn btn-danger mr-2" type="submit">Cancel</button>
+                                                            @method('PUT')
+                                                        </form>
+                                                    @else
+                                                        {{ $book->status === 1 ? 'Accepted' : 'Cancelled' }}
+                                                    @endif
                                                 </td>
                                             @endunless
+                                            @if (Auth::user()->role == 2)
+                                                <td>
+                                                    {{ ($book->status === 1 ? 'Accepted' : $book->status === 0) ? 'Pending' : 'Cancelled' }}
+                                                </td>
+                                            @endif
                                         </tr>
                                     @endforeach
                                 </tbody>
@@ -85,12 +96,29 @@
                                             <td>Student Id #{{ $book->student->id }}</td>
                                             @unless(Auth::user()->role == 2)
                                                 <td>
-                                                    <a class="btn btn-success mr-2"
-                                                        href="/admin/books/{{ $book->id }}/edit">Accept</a>
-                                                    <a class="btn btn-danger"
-                                                        href="/admin/books/{{ $book->id }}/edit">Cancel</a>
+                                                    @if ($book->status === 0)
+                                                        <form method="POST" action="{{ route('burrows.update', $book->id) }}">
+                                                            @csrf
+                                                            <input type="hidden" name="status" value="1">
+                                                            <button class="btn btn-success mr-2" type="submit">Accept</button>
+                                                            @method('PUT')
+                                                        </form>
+                                                        <form method="POST" action="{{ route('burrows.update', $book->id) }}">
+                                                            @csrf
+                                                            <input type="hidden" name="status" value="2">
+                                                            <button class="btn btn-danger mr-2" type="submit">Cancel</button>
+                                                            @method('PUT')
+                                                        </form>
+                                                    @else
+                                                        {{ $book->status === 1 ? 'Accepted' : 'Cancelled' }}
+                                                    @endif
                                                 </td>
                                             @endunless
+                                            @if (Auth::user()->role == 2)
+                                                <td>
+                                                    {{ ($book->status === 1 ? 'Accepted' : $book->status === 0) ? 'Pending' : 'Cancelled' }}
+                                                </td>
+                                            @endif
                                         </tr>
                                     @endforeach
                                 </tbody>
