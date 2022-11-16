@@ -29,6 +29,10 @@
                         </select>
                     </div>
                     <div class="form-group">
+                        <label for="name">Start date:</label>
+                        <input type="date" class="form-control" name="startDate" placeholder="Enter start date" required>
+                    </div>
+                    <div class="form-group">
                         <label for="name">Return date:</label>
                         <input type="date" class="form-control" name="returnDate" placeholder="Enter return date"
                             required>

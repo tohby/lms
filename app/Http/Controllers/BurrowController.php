@@ -51,10 +51,20 @@ class BurrowController extends Controller
             'return_date' => ['required|date'],
         ]);
 
+        $book = Book::find($request->book);
+
+        $numberOfBooksBurrowed = Burrow::where('bookId', $request->book)
+            ->where('burrow_date', '<=', $request->returnDate)
+            ->where('return_date', '>=', $request->startDate)->count();
+
+        if ($numberOfBooksBurrowed >= $book->number_of_books) {
+            return redirect('admin/burrows')->with('error', 'There are no more copies of this book available, please check back later or check with a later date');
+        }
+
         Burrow::Create([
             'bookId' => $request->book,
             'studentId' => Auth::id(),
-            'burrow_date' => date('Y-m-d H:i:s'),
+            'burrow_date' => $request->startDate,
             'return_date' => $request->returnDate,
         ]);
 
