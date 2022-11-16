@@ -41,7 +41,45 @@
                                             <td>{{ $book->book->name }}</td>
                                             <td>{{ $book->burrow_date }}</td>
                                             <td>Due on {{ $book->return_date }}</td>
-                                            <td>{{ $book->status === 0 ? 'Not returned' : 'Returned' }}</td>
+                                            <td>{{ $book->student->name }}</td>
+                                            <td>Student Id #{{ $book->student->id }}</td>
+                                            @unless(Auth::user()->role === 2)
+                                                <td>
+                                                    <form method="POST" action="{{ route('burrows.update', $book->id) }}">
+                                                        @csrf
+                                                        <input type="hidden" name="status" value="3">
+                                                        <button class="btn btn-success mr-2" type="submit">Return</button>
+                                                        @method('PUT')
+                                                    </form>
+                                                </td>
+                                            @endunless
+                                            @if (Auth::user()->role === 2)
+                                                <td>
+                                                    {{ (($book->status === 1 ? 'Accepted' : $book->status === 0) ? 'Pending' : $book->status === 3) ? 'Returned' : 'Cancelled' }}
+                                                </td>
+                                            @endif
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="card strpied-tabled-with-hover">
+                        <div class="card-header ">
+                            <h4 class="card-title">Upcoming books</h4>
+                            <p class="card-category">Here is a list of books you have burrowed and have not yet returned</p>
+                        </div>
+                        <div class="card-body table-full-width table-responsive">
+                            <table class="table table-hover table-striped">
+                                <tbody>
+                                    @foreach ($upcomingBooks as $book)
+                                        <tr>
+                                            <td>{{ $book->book->id }}</td>
+                                            <td>{{ $book->book->name }}</td>
+                                            <td>{{ $book->burrow_date }}</td>
+                                            <td>Due on {{ $book->return_date }}</td>
                                             <td>{{ $book->student->name }}</td>
                                             <td>Student Id #{{ $book->student->id }}</td>
                                             @unless(Auth::user()->role == 2)
@@ -74,56 +112,6 @@
                                             @if (Auth::user()->role == 2)
                                                 <td>
                                                     {{ (($book->status === 1 ? 'Accepted' : $book->status === 0) ? 'Pending' : $book->status === 3) ? 'Returned' : 'Cancelled' }}
-                                                </td>
-                                            @endif
-                                        </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-12">
-                    <div class="card strpied-tabled-with-hover">
-                        <div class="card-header ">
-                            <h4 class="card-title">Upcoming books</h4>
-                            <p class="card-category">Here is a list of books you have burrowed and have not yet returned</p>
-                        </div>
-                        <div class="card-body table-full-width table-responsive">
-                            <table class="table table-hover table-striped">
-                                <tbody>
-                                    @foreach ($upcomingBooks as $book)
-                                        <tr>
-                                            <td>{{ $book->book->id }}</td>
-                                            <td>{{ $book->book->name }}</td>
-                                            <td>{{ $book->burrow_date }}</td>
-                                            <td>Due on {{ $book->return_date }}</td>
-                                            <td>{{ $book->status === 0 ? 'Not returned' : 'Returned' }}</td>
-                                            <td>{{ $book->student->name }}</td>
-                                            <td>Student Id #{{ $book->student->id }}</td>
-                                            @unless(Auth::user()->role == 2)
-                                                <td>
-                                                    @if ($book->status === 0)
-                                                        <form method="POST" action="{{ route('burrows.update', $book->id) }}">
-                                                            @csrf
-                                                            <input type="hidden" name="status" value="1">
-                                                            <button class="btn btn-success mr-2" type="submit">Accept</button>
-                                                            @method('PUT')
-                                                        </form>
-                                                        <form method="POST" action="{{ route('burrows.update', $book->id) }}">
-                                                            @csrf
-                                                            <input type="hidden" name="status" value="2">
-                                                            <button class="btn btn-danger mr-2" type="submit">Cancel</button>
-                                                            @method('PUT')
-                                                        </form>
-                                                    @else
-                                                        {{ $book->status === 1 ? 'Accepted' : 'Cancelled' }}
-                                                    @endif
-                                                </td>
-                                            @endunless
-                                            @if (Auth::user()->role == 2)
-                                                <td>
-                                                    {{ ($book->status === 1 ? 'Accepted' : $book->status === 0) ? 'Pending' : 'Cancelled' }}
                                                 </td>
                                             @endif
                                         </tr>
