@@ -59,14 +59,21 @@
                                                             <button class="btn btn-danger mr-2" type="submit">Cancel</button>
                                                             @method('PUT')
                                                         </form>
+                                                    @elseif($book->status === 1)
+                                                        <form method="POST" action="{{ route('burrows.update', $book->id) }}">
+                                                            @csrf
+                                                            <input type="hidden" name="status" value="3">
+                                                            <button class="btn btn-success mr-2" type="submit">Return</button>
+                                                            @method('PUT')
+                                                        </form>
                                                     @else
-                                                        {{ $book->status === 1 ? 'Accepted' : 'Cancelled' }}
+                                                        {{ $book->status === 2 ? 'Cancelled' : $book->status >= 3 && 'Returned' }}
                                                     @endif
                                                 </td>
                                             @endunless
                                             @if (Auth::user()->role == 2)
                                                 <td>
-                                                    {{ ($book->status === 1 ? 'Accepted' : $book->status === 0) ? 'Pending' : 'Cancelled' }}
+                                                    {{ (($book->status === 1 ? 'Accepted' : $book->status === 0) ? 'Pending' : $book->status === 3) ? 'Returned' : 'Cancelled' }}
                                                 </td>
                                             @endif
                                         </tr>
