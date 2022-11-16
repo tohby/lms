@@ -67,7 +67,7 @@
                                                             @method('PUT')
                                                         </form>
                                                     @else
-                                                        {{ $book->status === 2 ? 'Cancelled' : $book->status >= 3 && 'Returned' }}
+                                                        {{ $book->status === 2 ? 'Cancelled' : $book->status === 3 && 'Returned' }}
                                                     @endif
                                                 </td>
                                             @endunless
